@@ -1,0 +1,57 @@
+% This is main.tex, a sample paper demonstrating the use of the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+% 
+\documentclass[runningheads]{llncs}
+\usepackage[a4paper,left=3cm,right=3cm,top=4cm,bottom=4cm,bindingoffset=5mm]{geometry}
+%
+% ---- Packages ----
+%
+\usepackage{graphicx} % enhanced support for graphics
+\usepackage{url} % add macros for handling URLs in text
+\usepackage[nohyperlinks,nolist]{acronym} % abbreviation utilities
+\usepackage{listings}
+% TODO: add more packages below if necessary
+%
+% ---- Acronyms ----
+%
+\begin{acronym}
+\acro{rq}[RQ]{Research Question}
+\end{acronym}
+%
+% ---- Begin Document ----
+%
+\begin{document}
+\title{NLP Selection of Tests - ...}
+\author{Marius Bosler}
+\institute{Seminar: Software Quality\\
+Advisor: Roland Würsching\\
+Technical University of Munich\\
+\email{marius.bosler@tum.de}}
+%
+\maketitle % typeset the header of the contribution
+%
+% ---- Abstract ----
+%
+\begin{abstract}
+Even though there have been many advancements in recent years, a significant amount of testing still needs to be conducted manually. This means that with each software release requiring numerous manual tests, a considerable amount of time is spent executing these tests. Meanwhile, many of these tests tend to overlap in bug detection, which could be avoided if a method were found to execute only the necessary number of tests, as multiple tests may detect the same bug. One way to achieve this is by clustering them through an analysis of the language used in their description. Then, by carefully selecting only a subset of all tests based on said clustering, a lot of time can be saved, especially if the selected tests cover a significant portion of the detected bugs.
+
+\keywords{Test Selection, Natural Language Processing, Clustering}
+\end{abstract}
+%
+% ---- Text Parts ----
+%
+\input{text/01_introduction}
+\input{text/02_related_work.tex}
+\input{text/03_methodology.tex}
+\input{text/04_evaluation.tex}
+\input{text/05_discussion.tex}
+\input{text/06_threats_to_validity.tex}
+\input{text/07_conclusion.tex}
+%
+% ---- Bibliography ----
+%
+\bibliographystyle{splncs04}
+\bibliography{library.bib}
+%
+\end{document}
