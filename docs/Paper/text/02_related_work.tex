@@ -1,4 +1,9 @@
 \section{Related Work}
-Li et al. \cite{Li} has proposed a method, 
-\cite{Sutar} another and
-\cite{Viggiato} yet another
+
+To solve the problem of test selection, a lot of approaches have been proposed. Of particular interest to us is test case selection using \ac{NLP}. In that field, the work by Sutar et al. \cite{Sutar} stands out prominently. Sutar et al. proposed a method to select regression test cases based on their relevance to defects using \ac{NLP}. In their approach, they focus on regression testing, analyzing both software requirements and test case descriptions using \ac{NLP}. By calculating the similarity between these, they prioritize those test cases that are most likely to be impacted by changes to the code. However, in this paper, we want to focus not only on regression test case selection but on general test case selection.
+
+Another influential approach for this paper is the one proposed by Li et al. \cite{Li}. The researchers use \ac{NLP} to group semantically similar test steps across different test cases and then cluster these steps to reveal which ones likely perform the same or similar actions. This allows for the avoidance of duplicate or overlapping API methods when the tests are automated. Although the goal of that paper is not the same as ours, they used a similar approach that this paper will explore.
+
+The fundamental approach to finding test similarity in this paper is mostly based on the paper by Viggiato et al. \cite{Viggiato}. The researchers use \ac{NLP} to identify similar test steps within test cases. Text embedding models then convert the text of test steps into numerical representations. These textual similarities are used to determine how closely related the tests with these embedded steps are, followed by clustering to group similar test cases. This step-level analysis aims to reduce redundancy within the overall test suite.
+
+This paper aims to combine the mentioned \ac{NLP} approaches and introduce real-life bug data to improve test case selection.

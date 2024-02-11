@@ -1,1 +1,14 @@
 \section{Threats to Validity}
+
+\subsection*{External:} 
+The dataset of XWiki might not represent all manual test suites equally. It is possible that the suite was a lucky choice for our approach and other datasets might not have the same level of improvements over random selection. If the XWiki dataset has bug distributions significantly different from what is commonly seen in software projects (e.g., very few bugs concentrated in a small portion of the system), it might limit the generalizability of the findings.
+Also, if the quality of test case descriptions varies significantly (level of detail, clarity etc.), it could weaken the quality of the NLP analysis and clustering.
+
+
+\subsection*{Internal:} 
+There might be some bugs that are more important or take more time than others. If the \ac{NLP}-based approach only selects dissimilar tests, we might have a bias on not executing a set of more important test cases if they are too similar to each other and thereby might not find a set of more important bugs.
+While textual similarity of test case steps leads to an improvement of bug coverage in our case, it is not guaranteed that it actually effectively identifies test similarity all the time. Not every relation between tests might be covered by textual similarity and there might even be datasets where the textual similarity does not at all correlate with similar code that is tested in the background. This could lead to drastically worse results on other datasets.
+
+\subsection*{Mitigation}
+To avoid these threats one might want to introduce bigger datasets and also look at the severity of bugs. On top of that, manually identifying similar tests might give an idea of how good \ac{NLP}-based similarity works to find similar tests compared to other approaches and might display inadequacies of this approach.
+Also, including other parts of the test case descriptions and a different way to cluster the embeddings could improve bug coverage even more and make the \ac{NLP}-based approach work on more datasets that might not work with our exact approach.

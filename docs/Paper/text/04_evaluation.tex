@@ -1,38 +1,39 @@
 \section{Evaluation}
 \subsection{Research Questions}
-To test our approach, we want to use our dataset of XWiki to answer the
-following \acp{rq}:
+To test our approach, we want to use our dataset of XWiki to answer the following \acp{rq}:
 \begin{itemize}
     \item \ac{rq}1: \emph{How many bug tickets are found when selecting only a subset of tests using NLP-Clustering by Test Specification}
-          The goal of this paper is to demonstrate wether clustering tests in said method can produce helpful results. But is there actually a substantial amount of time/tests that can be saved when only selecting a portion of all tests?
-    \item \ac{rq}2: \emph{How does the performance of NLP-based test selection compare with simpler, more naive methods of test selection in terms of bug detection and resource utilization?} This is done to show wether it is even worth it to implement something comparatively complex over something simple.
+    The goal of this paper is to discover whether a substantial amount of time and test executions can be saved when only selecting a portion of all tests when choosing the \ac{NLP}-based approach
+    \item \ac{rq}2: \emph{How does the performance of NLP-based test selection compare with simpler, more naive methods of test selection in terms of bug detection?} This is done to show whether it is even worth it to implement something comparatively complex over something simple.
 \end{itemize}
 
 \subsection{Evaluation Metrics}
 To evaluate how well our algorithm works, we want to find out how many bugs are
 covered by a certain percentage of run tests. Our source also includes bug
 tickets and we can link each test to its bug ticket. That way, we can go
-through all n selected tests and make a set of bug tickets covered and divide
-them by the number of all bug tickets and thereby know the percentage of bug
+through all \emph{n} selected tests, create a set of bug tickets covered, divide
+its size by the number of all bug tickets and thereby know the percentage of bug
 tickets covered. As we do not yet know how many tests should be selected, we
 will go through all the percentage numbers from 10 to 70 in steps of ten and
-see how many bug tickets have been covered by each number of tests.
+see how many bug tickets have been covered by each number of tests and could then select the one appropriate for a given project.
 
 \subsection{Comparison of Approaches}
 To then find out how our algorithm compares to naive approaches we first have
 to choose a naive approach. The first proposition that comes to mind is just
-choosing n random tests from our test cases. Our alternative approach is only
+choosing \emph{n} random tests from our test cases. Our alternative approach is only
 possible with data that has some sort of categorization. As an example, the
 test at
 \begin{verbatim}
 https://test.xwiki.org/xwiki/bin/view/File%20Manager%20Tests/Delete%20a%20file
 \end{verbatim}
 we mentioned earlier, is in the category \emph{P1.Extensions - File Manager
-    Tests}. In total there are TODO categories like this in our data set. As we can
+    Tests}. In total, there are 68 categories like this in our data set. As we can
 assume similar bugs belong to similar test categories, this implementation
 might lead to a well enough grouping of test cases.
 
 \subsection{Results}
+
+In the results, we chose to only select up to 70\% of tests, as clustering with KMeans did not provide enough separate clusters for 80\% or more of the test cases for our method, as our approach might lead to fewer distinct test-case vectors than actual test-cases. To avoid departing from the relatively simple and, as the results show, comparatively effective method, we decided to only select up to 70\% of tests. This limitation isn't problematic in our case, as the focus is to especially show the effectiveness of the approach for a more significant test case reduction than just 20\%.
 
 We compared the three methods of test selection to evaluate their effectiveness
 in covering bug tickets. These methods are represented in Table
@@ -45,6 +46,8 @@ in covering bug tickets. These methods are represented in Table
 \end{itemize}
 
 \begin{table}[H]
+    \caption{Coverage of Bug Tickets by Percentage of Tests Run for Different Methods}
+
     \centering
     \renewcommand{\arraystretch}{1.5}  % Adjust the 1.5 to increase or decrease padding
     \begin{tabular}{|@{\hspace{5pt}}c@{\hspace{5pt}}|@{\hspace{5pt}}c@{\hspace{5pt}}|@{\hspace{5pt}}c@{\hspace{5pt}}|@{\hspace{5pt}}c@{\hspace{5pt}}|}  \hline
@@ -57,11 +60,10 @@ in covering bug tickets. These methods are represented in Table
         60\%                    & 69.95\%  & 68.35\%  & 80.96\%  \\ \hline
         70\%                    & 73.62\%  & 70.87\%  & 83.03\%  \\ \hline
     \end{tabular}
-    \caption{Coverage of Bug Tickets by Percentage of Tests Run for Different Methods}
     \label{table:bug_ticket_coverage_comparison}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -110,3 +112,4 @@ in covering bug tickets. These methods are represented in Table
     \label{fig:bugticketcoverage}
 \end{figure}
 
+Fig. \ref{fig:bugticketcoverage} shows a significant difference between more primitive approaches and the more advanced \ac{NLP}-based approach.

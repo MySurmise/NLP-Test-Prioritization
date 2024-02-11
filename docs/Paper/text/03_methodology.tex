@@ -18,17 +18,18 @@ We used data from XWiki, an open-source wiki platform. From their website, we sc
     }
 \end{Verbatim}
 
-The dataset chosen for this study is especially fitting for us, because it contains detailed textual descriptions in the form of test steps, which can tell us how similar the given tests are, which we later want to use to cluster them together.
+The dataset chosen for this study is especially fitting for us because it contains detailed textual descriptions in the form of test steps. These descriptions can help determine the similarity between tests, which we can use to cluster them together.
 
 \subsection{\ac{NLP} Techniques and Test Selection Process}
 
+To find similar test cases, we use a mix of text embedding and clustering. The approach to finding similar test cases is based on the approach by Viggiato et al. \cite{Viggiato}.
 
 First, we converted all words to lowercase and used word stemming, with the python library \emph{nltk}.
 For example, this converts the sentence \emph{Click on File Manager from Applications Panel} to important word stems: \emph{click file manag applic panel}. \\
-This is done, because it makes text analysis more efficient later, especially if we only want to extract the meaning and similarity of test steps.
+This is done to make text analysis more efficient, especially if we only want to extract the meaning and similarity of test steps.
 
-We then converted the resulting strings to their embeddings with the Python library \emph{SentenceTransformer} and the model \emph{all-mpnet-base-v2}. Embeddings can be thought of as representations of textual information in a numerical format. This is really important, because they enable us to compare similarities between different elements efficiently in a mathematical way. 
-Every sentence is now represented as a vector of numbers with length 768:
+We then converted the resulting strings to their embeddings with the Python library \emph{SentenceTransformer} and the model \emph{all-mpnet-base-v2}. Embeddings can be thought of as representations of textual information in a numerical format. This is important because they enable us to efficiently compare similarities between different elements mathematically.
+Every sentence is now represented as a vector of numbers with a length of 768:
 
 \begin{Verbatim}
 [-8.30066670e-03, -4.04462852e-02, -2.05343179e-02,  3.46409194e-02,
@@ -39,16 +40,17 @@ Every sentence is now represented as a vector of numbers with length 768:
 \end{Verbatim}
 
 To then find similarities between test cases, we needed to find a way to find out which tests have similar test steps. This is done in the following way:
-First, we are clustering the embeddings of all test steps, so every test case has a number of clusters its test steps are in. As a simplified example, we might sort them into 10 clusters, then our example test case steps might be in the clusters with ids \emph{4, 2, 2, 6, 7} (the results are better if we use much more than 10 clusters).
-For the actual clustering of test cases, we've employed three distinct algorithms: KMeans, DBScan, and Optics. After some evaluation, it became   clear that KMeans was the most fitting choice for our specific needs, as we later want to choose the n dissimmilar test cases and KMeans lets us define how many test clusters we want.
+First, we are clustering the embeddings of all test steps, so every test case has several clusters whose test steps are in. As a simplified example, we might sort them into 10 clusters, then our example test case steps might be in the clusters with ids \emph{4, 2, 2, 6, 7} (the results are better if we use much more than 10 clusters).
+For the actual clustering of test cases, we've employed three distinct algorithms: KMeans, DBScan, and Optics. After some evaluation, it became clear that KMeans was the most fitting choice for our specific needs, as we later want to choose the \emph{n} dissimilar test cases and KMeans lets us define how many test clusters we want.
 Then we need to find similarities between actual test cases:
-For every test case, we create a empty null-vector with the length of the number of different clusters. Then we fill it at the positions of said cluster ids with how many each cluster appears:
+For every test case, we create an empty null vector with the length of the number of different clusters. Then we fill it at the positions of said cluster IDs with how many each cluster appears:
 
 \begin{Verbatim}
     [0, 0, 2, 0, 1, 0, 1, 1, 0, 0]
 \end{Verbatim}
 
 These Vectors now represent our tests in a mathematical way, which, as mentioned earlier, we want to compare the tests with other tests.
-To achieve this, we cluster again after these vectors and as we want to select n dissimmilar test cases, we cluster with KMeans to cluster the tests into n clusters.
+To achieve this, we cluster again after these vectors and as we want to select \emph{n} dissimilar test cases, we cluster with KMeans to cluster the tests into \emph{n} clusters.
 
-After that, we have n clusters of test cases from which we then select one test each. 
+After that, we have \emph{n} clusters of test cases from which we then randomly select one test each. 
+

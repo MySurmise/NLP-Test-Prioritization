@@ -1,5 +1,13 @@
 \section{Introduction}
 
-\dots
+In the evolution of software testing, a key goal has always been to make testing faster and more reliable. And even though much can be automated nowadays, it is oftentimes still preferable to use manual instead of automated tests, as they are comparatively easy to create and change. One problem with manual testing, however, is that it usually takes a lot of time and human effort to run the tests. Additionally, tests might often have an overlap with each other, because, among other things, for larger projects many test case maintainers do not know every other test case by heart and therefore might introduce redundancy which is of course especially to be avoided in the case of manual tests that take a long time to execute.
 
-The entire process was implemented in Python, and the code for this project is available on GitHub. (link hier noch einfügen)
+Our approach aims to mitigate this redundancy by examining the relationship between test cases. For instance, if two tests A and B have similar textual descriptions, it might be that they cover similar functionalities and therefore potentially detect the same bugs, so in this case, we might want to only execute Test A and thereby reduce our test execution time significantly, even though we still find both bugs. 
+
+A lot of ways to find similar tests like this have been proposed, mostly by analyzing the textual descriptions of these tests, like in the study by Viggiato et al. \cite{Viggiato}. In that study, \ac{NLP} was used on the test steps to find similar test cases, then clustering said test cases to find similar ones.
+
+Recognizing that many tests redundantly identify the same bugs, this study aims to build on the mentioned approach in that study, to later select only a subset of said tests based on their similarity and thereby hopefully reduce the test cases that need to be executed drastically, while still covering a significant portion of recognized bugs.
+
+In our case, we will use a dataset from XWiki, an open-source wiki platform with 1,600 manual tests. If one of these tests fails during execution, the testers append a Bug Ticket to the test. We will use these Bug tickets to discover and evaluate said redundancies.
+
+The entire approach was implemented in Python because of its ease of use and because it has one of the best library support in the fields we look at, especially in the field of \ac{NLP}.
