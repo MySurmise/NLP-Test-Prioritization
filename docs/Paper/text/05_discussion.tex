@@ -12,7 +12,7 @@ So, if a project has a problem with manual testers, this approach achieves a rea
 
 \ac{rq}2: \emph{How does the performance of NLP-based test selection compare with simpler, more naive methods of test selection in terms of bug detection?}
 
-Table \ref{fig:bugticketcoverage} shows that a random selection of 30\% of tests results in a bug detection quota of 37.84\%. This overshoot occurs because most bug tickets usually are associated with multiple test cases. As a result, a test case might cover a higher percentage of bug tickets than its proportion within the test suite would suggest.
+Table \ref{fig:bugticketcoverage} shows that a random selection of 30\% of tests results in a bug detection quota of 37.84\%. This overshoot occurs because many test cases are associated with multiple bug tickets. As a result, a test case might cover a higher percentage of bug tickets than its proportion within the test suite would suggest.
 
 The next naive approach was to select based on categories. Selecting 30\% of test cases from separate categories first showed a bug detection quota of 38.53\%. This result was somewhat surprising because one might expect a significantly better result than just choosing tests randomly. After all, the categories show an intrinsic test similarity based on human judgment. That this did not significantly improve bug coverage showed us how difficult it might be to improve upon random selection.
 
