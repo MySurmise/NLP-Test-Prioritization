@@ -4,9 +4,9 @@ In the evolution of software testing, a key goal has always been to make testing
 
 Our approach aims to mitigate this redundancy by examining the relationship between test cases. For instance, if two tests A and B have similar textual descriptions, it might be that they cover similar functionalities and therefore potentially detect the same bugs, so in this case, we might want to only execute Test A and thereby reduce our test execution time significantly, even though we still find both bugs. 
 
-A lot of ways to find similar tests like this have been proposed, mostly by analyzing the textual descriptions of these tests, like in the study by Viggiato et al. \cite{Viggiato}. In that study, \ac{NLP} was used on the test steps to find similar test cases, then clustering said test cases to find similar ones.
+A lot of ways to find similar tests like this have been proposed, mostly by analyzing the textual descriptions of these tests, like in the study by Viggiato et al. \cite{Viggiato}. In that study, \ac{NLP} was used on the test steps to create embeddings of test steps, and then said test cases were clustered based on the embeddings of their steps to find similar tests.
 
-Recognizing that many tests redundantly identify the same bugs, this study aims to build on the mentioned approach in that study, to later select only a subset of said tests based on their similarity and thereby hopefully reduce the test cases that need to be executed drastically, while still covering a significant portion of recognized bugs.
+Recognizing that many tests redundantly identify the same bugs, this study aims to build on the mentioned approach in that study, to later select only a subset of said tests based on their similarity and thereby hopefully reduce the test cases that need to be executed, while still covering a significant portion of recognized bugs.
 
 In our case, we will use a dataset from XWiki, an open-source wiki platform with 1,600 manual tests. If one of these tests fails during execution, the testers append a Bug Ticket to the test. We will use these Bug tickets to discover and evaluate said redundancies.
 

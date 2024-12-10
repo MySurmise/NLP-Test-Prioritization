@@ -4,17 +4,17 @@ This section shall discuss the results and the research questions to analyze the
 
 \ac{rq}1: \emph{How many bug tickets are found when selecting only a subset of tests using NLP-Clustering by Test Specification}
 
-Table \ref{fig:bugticketcoverage} shows that a \ac{NLP}-based selection of 30\% of the tests achieves a bug detection quota of 51.61\%, while 50\% results in a quota of 72.48\%.
-This means we can still detect nearly $\frac{3}{4}$ of all bugs when only executing $\frac{1}{2}$ of all tests.
-This is a much bigger portion of bugs covered than tests executed and therefore a relatively satisfactory result and at the same time, we are sadly missing out on a lot of bugs we used to discover.
+
+With the \ac*{NLP}-based approach we cover a much bigger portion of bugs than the amount of tests that were executed. With $\frac{1}{2}$ of tests selected we find nearly $\frac{3}{4}$ of bug tickets. This is a relatively satisfactory result, especially considering so little information was used to compare the tests. 
+At the same time, we are sadly missing out on a lot of bugs we used to discover when selecting 100\% of tests.
 However, a large project such as the XWiki project or other even larger ones might often have problems finding enough people to execute the tests on every new version, especially when the number of manual tests keeps rising. On smaller versions, it might therefore be preferable to only choose as many test cases as can be executed in a realistic amount of time until release.
 So, if a project has a problem with manual testers, this approach achieves a reasonable tradeoff between time spent and bugs found.
 
 \ac{rq}2: \emph{How does the performance of NLP-based test selection compare with simpler, more naive methods of test selection in terms of bug detection?}
 
-Table \ref{fig:bugticketcoverage} shows that a random selection of 30\% of tests results in a bug detection quota of 37.84\%. This overshoot occurs because many test cases are associated with multiple bug tickets. As a result, a test case might cover a higher percentage of bug tickets than its proportion within the test suite would suggest.
+As for the first naive approach, the number of bug tickets we cover when selecting completely random is percentage-wise higher than the amount of tests we select. This occurs because many test cases are associated with multiple bug tickets. As a result, a test case might cover a higher percentage of bug tickets than its proportion within the test suite would suggest. But still, the number is drastically less than the proposed \ac{NLP}-based approach. With 50\% of tests selected, we only find close to 55\% of bug tickets, so nearly 20\% less, showing a significantly improved performance for the \ac{NLP}-based approach.
 
 The next naive approach was to select based on categories. Selecting 30\% of test cases from separate categories first showed a bug detection quota of 38.53\%. This result was somewhat surprising because one might expect a significantly better result than just choosing tests randomly. After all, the categories show an intrinsic test similarity based on human judgment. That this did not significantly improve bug coverage showed us how difficult it might be to improve upon random selection.
 
-All in all, the proposed approach to selection gave us a significantly better selection compared to more naive approaches. Given the fact that executing the algorithms on a system with an intel i7-12850HX with 16 cores only takes about 3.5 minutes, we can also recognize a drastic reduction in time spent executing manual tests, which can also lead to a faster release of new versions.
+All in all, the proposed approach to selection gave us a significantly better selection compared to more naive approaches. Given the fact that executing the algorithms on a system with an intel i7-12850HX with 16 cores only takes about 3.5 minutes, which is barely noticeable when comparing that to the time we might use for executing hundreds of tests, we can recognize a drastic reduction in time spent executing manual tests, which could also lead to a faster release of new versions.
 

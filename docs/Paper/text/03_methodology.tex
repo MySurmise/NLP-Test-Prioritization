@@ -49,8 +49,20 @@ For every test case, we create an empty null vector with the length of the numbe
     [0, 0, 2, 0, 1, 0, 1, 1, 0, 0]
 \end{Verbatim}
 
+
+
+\begin{figure}[H]
+    
+\noindent\makebox[\textwidth][l]{%
+    \hspace{\dimexpr\oddsidemargin-3cm}%
+        \includegraphics[width=0.9\paperwidth]{figures/getting_representation_for_tests.png}%
+}
+\caption{Getting a vector representation for each test}
+
+\end{figure}
+
+
 These Vectors now represent our tests in a mathematical way, which, as mentioned earlier, we want to compare the tests with other tests.
 To achieve this, we cluster again after these vectors and as we want to select \emph{n} dissimilar test cases, we cluster with KMeans to cluster the tests into \emph{n} clusters.
 
-After that, we have \emph{n} clusters of test cases from which we then randomly select one test each. 
-
+After that, we have \emph{n} clusters of test cases from which we then randomly select one test each. This will be our test selection.
