@@ -8,3 +8,5 @@ To avoid this waste of time we need to
     2. avoid redundant test cases.
 
 This repository aims to do this by embedding the test descriptions and then clustering their embeddings, thereby recognizing similar tests and even identify tests that are redundant.
+
+Paper can be found under [docs/Paper/main.pdf](https://github.com/maribox/NLP-Test-Prioritization/blob/main/docs/Paper/main.pdf).
